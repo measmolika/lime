@@ -305,7 +305,8 @@ class LimeTabularExplainer(object):
                          num_samples=5000,
                          distance_metric='euclidean',
                          model_regressor=None,
-                         sampling_method='gaussian'):
+                         sampling_method='gaussian',
+                         original_values=None):
         """Generates explanations for a prediction.
 
         First, we generate neighborhood data by randomly perturbing features
@@ -335,6 +336,8 @@ class LimeTabularExplainer(object):
                 and 'sample_weight' as a parameter to model_regressor.fit()
             sampling_method: Method to sample synthetic data. Defaults to Gaussian
                 sampling. Can also use Latin Hypercube Sampling.
+            original_values: Quick hack to display untransformed values in case
+                normalized values are used as input.
 
         Returns:
             An Explanation object (see explanation.py) with the corresponding
@@ -433,7 +436,7 @@ class LimeTabularExplainer(object):
                         discretized_instance[f])]
 
         domain_mapper = TableDomainMapper(feature_names,
-                                          values,
+                                          original_values,
                                           scaled_data[0],
                                           categorical_features=categorical_features,
                                           discretized_feature_names=discretized_feature_names,
