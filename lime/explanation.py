@@ -44,6 +44,7 @@ class DomainMapper(object):
         Returns:
             exp: list of tuples [(name, weight), (name, weight)...]
         """
+        print('map_exp_ids',exp)
         return exp
 
     def visualize_instance_html(self,
