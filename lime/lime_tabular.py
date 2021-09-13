@@ -63,6 +63,8 @@ class TableDomainMapper(explanation.DomainMapper):
         names = self.exp_feature_names
         if self.discretized_feature_names is not None:
             names = self.discretized_feature_names
+        print('names',names)
+        print('[(names[x[0]], x[1]) for x in exp]',[(names[x[0]], x[1]) for x in exp])
         return [(names[x[0]], x[1]) for x in exp]
 
     def visualize_instance_html(self,
