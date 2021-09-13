@@ -112,6 +112,7 @@ class TableDomainMapper(explanation.DomainMapper):
             out_list = list(zip(self.exp_feature_names,
                                 self.feature_values,
                                 weights))
+            print('out_list5432343',out_list)
             if not show_all:
                 out_list = [out_list[x[0]] for x in exp]
                 print('out_list----',out_list)
