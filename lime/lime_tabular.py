@@ -343,23 +343,18 @@ class LimeTabularExplainer(object):
             An Explanation object (see explanation.py) with the corresponding
             explanations.
         """
-        print('33333')
         if sp.sparse.issparse(data_row) and not sp.sparse.isspmatrix_csr(data_row):
             # Preventative code: if sparse, convert to csr format if not in csr format already
             data_row = data_row.tocsr()
         data, inverse = self.__data_inverse(data_row, num_samples, sampling_method)
-        print('inverse', inverse)
         if sp.sparse.issparse(data):
-            print('---')
             # Note in sparse case we don't subtract mean since data would become dense
             scaled_data = data.multiply(self.scaler.scale_)
             # Multiplying with csr matrix can return a coo sparse matrix
             if not sp.sparse.isspmatrix_csr(scaled_data):
-                print('111111')
                 scaled_data = scaled_data.tocsr()
         else:
             scaled_data = (data - self.scaler.mean_) / self.scaler.scale_
-            print('scaled-data',scaled_data)
         distances = sklearn.metrics.pairwise_distances(
                 scaled_data,
                 scaled_data[0].reshape(1, -1),
@@ -404,7 +399,6 @@ class LimeTabularExplainer(object):
                     numpyarrays, not arrays of {} dimensions".format(yss.shape))
 
             predicted_value = yss[0]
-            print('yss[0]',predicted_value)
             min_y = min(yss)
             max_y = max(yss)
 
@@ -417,11 +411,9 @@ class LimeTabularExplainer(object):
 
         if sp.sparse.issparse(data_row):
             values = self.convert_and_round(data_row.data)
-            print('5555',values)
             feature_indexes = data_row.indices
         else:
             values = self.convert_and_round(data_row)
-            print('7777',values)
             feature_indexes = None
 
         for i in self.categorical_features:
@@ -458,7 +450,6 @@ class LimeTabularExplainer(object):
                 labels = np.argsort(yss[0])[-top_labels:]
                 ret_exp.top_labels = list(labels)
                 ret_exp.top_labels.reverse()
-                print('labels',labels)
         else:
             ret_exp.predicted_value = predicted_value
             ret_exp.min_value = min_y
@@ -476,13 +467,6 @@ class LimeTabularExplainer(object):
                     num_features,
                     model_regressor=model_regressor,
                     feature_selection=self.feature_selection)
-            print('scaled-data',scaled_data)
-            print('yss',yss)
-            print('distance',distances)
-            print('ret_exp.intercept[label]',ret_exp.intercept[label])
-            print('ret_exp.local_exp[label]',ret_exp.local_exp[label])
-            print("ret_exp.score[label]",ret_exp.score[label],)
-            print("ret_exp.local_pred[label]",ret_exp.local_pred[label])
 
         if self.mode == "regression":
             ret_exp.intercept[1] = ret_exp.intercept[0]
