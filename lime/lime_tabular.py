@@ -347,13 +347,17 @@ class LimeTabularExplainer(object):
             # Preventative code: if sparse, convert to csr format if not in csr format already
             data_row = data_row.tocsr()
         data, inverse = self.__data_inverse(data_row, num_samples, sampling_method)
+        print('inverse', inverse)
         if sp.sparse.issparse(data):
+            print('---')
             # Note in sparse case we don't subtract mean since data would become dense
             scaled_data = data.multiply(self.scaler.scale_)
             # Multiplying with csr matrix can return a coo sparse matrix
             if not sp.sparse.isspmatrix_csr(scaled_data):
+                print('111111')
                 scaled_data = scaled_data.tocsr()
         else:
+            print('22222')
             scaled_data = (data - self.scaler.mean_) / self.scaler.scale_
         distances = sklearn.metrics.pairwise_distances(
                 scaled_data,
