@@ -358,8 +358,8 @@ class LimeTabularExplainer(object):
                 print('111111')
                 scaled_data = scaled_data.tocsr()
         else:
-            print('22222')
             scaled_data = (data - self.scaler.mean_) / self.scaler.scale_
+            print('scaled-data',scaled_data)
         distances = sklearn.metrics.pairwise_distances(
                 scaled_data,
                 scaled_data[0].reshape(1, -1),
@@ -367,7 +367,6 @@ class LimeTabularExplainer(object):
         ).ravel()
 
         yss = predict_fn(inverse)
-        print("yss",yss)
 
         # for classification, the model needs to provide a list of tuples - classes
         # along with prediction probabilities
@@ -405,6 +404,7 @@ class LimeTabularExplainer(object):
                     numpyarrays, not arrays of {} dimensions".format(yss.shape))
 
             predicted_value = yss[0]
+            print('yss[0]',predicted_value)
             min_y = min(yss)
             max_y = max(yss)
 
@@ -458,6 +458,7 @@ class LimeTabularExplainer(object):
                 labels = np.argsort(yss[0])[-top_labels:]
                 ret_exp.top_labels = list(labels)
                 ret_exp.top_labels.reverse()
+                print('labels',labels)
         else:
             ret_exp.predicted_value = predicted_value
             ret_exp.min_value = min_y
