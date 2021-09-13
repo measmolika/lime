@@ -29,7 +29,7 @@ class TableDomainMapper(explanation.DomainMapper):
 
     def __init__(self, feature_names, feature_values, scaled_row,
                  categorical_features, discretized_feature_names=None,
-                 feature_indexes=None, original_values=None):
+                 feature_indexes=None):
         """Init.
 
         Args:
@@ -435,13 +435,8 @@ class LimeTabularExplainer(object):
                 discretized_feature_names[f] = self.discretizer.names[f][int(
                         discretized_instance[f])]
 
-        if(original_values):
-            print("-----")
-            v = original_values
-        else: v = values       
-
         domain_mapper = TableDomainMapper(feature_names,
-                                          v,
+                                          original_values,
                                           scaled_data[0],
                                           categorical_features=categorical_features,
                                           discretized_feature_names=discretized_feature_names,
