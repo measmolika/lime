@@ -98,6 +98,8 @@ class TableDomainMapper(explanation.DomainMapper):
                 out_list = list(zip(fnames,
                                     self.feature_values,
                                     fweights))
+                print('out_list111',out_list)
+
             else:
                 out_dict = dict(map(lambda x: (x[0], (x[1], x[2], x[3])),
                                 zip(self.feature_indexes,
@@ -112,6 +114,8 @@ class TableDomainMapper(explanation.DomainMapper):
                                 weights))
             if not show_all:
                 out_list = [out_list[x[0]] for x in exp]
+                print('out_list----',out_list)
+
         ret = u'''
             %s.show_raw_tabular(%s, %d, %s);
         ''' % (exp_object_name, json.dumps(out_list, ensure_ascii=False), label, div_name)
