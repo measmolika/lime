@@ -476,6 +476,10 @@ class LimeTabularExplainer(object):
                     num_features,
                     model_regressor=model_regressor,
                     feature_selection=self.feature_selection)
+            print('ret_exp.intercept[label]',ret_exp.intercept[label])
+            print('ret_exp.local_exp[label]',ret_exp.local_exp[label])
+            print("ret_exp.score[label]",ret_exp.score[label],)
+            print("ret_exp.local_pred[label]",ret_exp.local_pred[label])
 
         if self.mode == "regression":
             ret_exp.intercept[1] = ret_exp.intercept[0]
