@@ -84,6 +84,7 @@ class TableDomainMapper(explanation.DomainMapper):
              show_table: if False, don't show table visualization.
              show_all: if True, show zero-weighted features in the table.
         """
+        print('exp_object_name',exp_object_name)
         if not show_table:
             return ''
         weights = [0] * len(self.feature_names)
@@ -104,6 +105,7 @@ class TableDomainMapper(explanation.DomainMapper):
                                     self.feature_values,
                                     fweights)))
                 out_list = [out_dict.get(x[0], (str(x[0]), 0.0, 0.0)) for x in exp]
+                print('out_list',out_list)
         else:
             out_list = list(zip(self.exp_feature_names,
                                 self.feature_values,
