@@ -289,6 +289,8 @@ class Explanation(object):
         if self.mode == "classification":
             for label in labels:
                 exp = jsonize(self.as_list(label))
+                print('exp',exp)
+                print('label',label)
                 exp_js += u'''
                 exp_div = top_div.append('div').classed('lime explanation', true);
                 exp.show(%s, %d, exp_div);
