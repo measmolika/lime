@@ -456,6 +456,9 @@ class LimeTabularExplainer(object):
             ret_exp.predicted_value = predicted_value
             ret_exp.min_value = min_y
             ret_exp.max_value = max_y
+            print('min',ret_exp.min_value)
+            print('max',ret_exp.max_value)
+            print('ret_exp.predicted_value',ret_exp.predicted_value)
             labels = [0]
         for label in labels:
             (ret_exp.intercept[label],
