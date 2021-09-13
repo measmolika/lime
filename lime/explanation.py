@@ -304,6 +304,7 @@ class Explanation(object):
 
         if self.mode == "classification":
             html_data = self.local_exp[labels[0]]
+            print('html_data',html_data)
         else:
             html_data = self.local_exp[self.dummy_label]
 
