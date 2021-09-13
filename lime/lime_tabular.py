@@ -367,6 +367,7 @@ class LimeTabularExplainer(object):
         ).ravel()
 
         yss = predict_fn(inverse)
+        print("yss",yss)
 
         # for classification, the model needs to provide a list of tuples - classes
         # along with prediction probabilities
@@ -416,9 +417,11 @@ class LimeTabularExplainer(object):
 
         if sp.sparse.issparse(data_row):
             values = self.convert_and_round(data_row.data)
+            print('5555',values)
             feature_indexes = data_row.indices
         else:
             values = self.convert_and_round(data_row)
+            print('7777',values)
             feature_indexes = None
 
         for i in self.categorical_features:
