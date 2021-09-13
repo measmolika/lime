@@ -476,6 +476,9 @@ class LimeTabularExplainer(object):
                     num_features,
                     model_regressor=model_regressor,
                     feature_selection=self.feature_selection)
+            print('scaled-data',scaled_data)
+            print('yss',yss)
+            print('distance',distances)
             print('ret_exp.intercept[label]',ret_exp.intercept[label])
             print('ret_exp.local_exp[label]',ret_exp.local_exp[label])
             print("ret_exp.score[label]",ret_exp.score[label],)
