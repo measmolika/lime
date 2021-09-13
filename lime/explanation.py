@@ -139,6 +139,9 @@ class Explanation(object):
         """
         label_to_use = label if self.mode == "classification" else self.dummy_label
         ans = self.domain_mapper.map_exp_ids(self.local_exp[label_to_use], **kwargs)
+        print('self.local_exp[label_to_use]',self.local_exp[label_to_use])
+        print('label_to_use',label_to_use)
+        print('-----ans',ans)
         ans = [(x[0], float(x[1])) for x in ans]
         return ans
 
