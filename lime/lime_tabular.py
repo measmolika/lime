@@ -116,7 +116,7 @@ class TableDomainMapper(explanation.DomainMapper):
             if not show_all:
                 out_list = [out_list[x[0]] for x in exp]
                 print('out_list----',out_list)
-
+        print('out_list789',out_list)
         ret = u'''
             %s.show_raw_tabular(%s, %d, %s);
         ''' % (exp_object_name, json.dumps(out_list, ensure_ascii=False), label, div_name)
